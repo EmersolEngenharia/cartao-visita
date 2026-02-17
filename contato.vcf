@@ -1,0 +1,9 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Emerson Luiz Miranda
+ORG:Emersol Engenharia
+TITLE:Founder & Electrical Engineer
+TEL;TYPE=CELL,VOICE;VALUE=uri:tel:+5564992079961
+EMAIL:emerson@emersol.com.br
+URL:https://emersol.com.br
+END:VCARD
