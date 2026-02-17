@@ -22,23 +22,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <style>
-        :root {
-            --primary: #00d4ff;
-            --primary-dim: rgba(0, 212, 255, 0.15);
-            --accent: #7c3aed;
-            --accent-glow: rgba(124, 58, 237, 0.3);
-            --bg-dark: #0a0a0f;
-            --bg-section: #111118;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --text-main: #f0f0f5;
-            --text-dim: #8888a0;
-            --text-bright: #ffffff;
-            --border: rgba(255, 255, 255, 0.06);
-            --gradient-hero: linear-gradient(135deg, #0a0a0f 0%, #1a1025 50%, #0a0a0f 100%);
-            --gradient-accent: linear-gradient(135deg, #00d4ff, #7c3aed);
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -51,8 +34,6 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-main);
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
@@ -62,34 +43,31 @@
             display: none;
         }
 
-        body.lang-en [data-lang="en"],
-        body.lang-pt [data-lang="pt"],
+        body.lang-en [data-lang="en"] {
+            display: block;
+        }
+
+        body.lang-pt [data-lang="pt"] {
+            display: block;
+        }
+
         body.lang-es [data-lang="es"] {
             display: block;
         }
 
-        span[data-lang],
-        h1 [data-lang],
-        h2 [data-lang],
-        h3 [data-lang],
-        p [data-lang],
-        a [data-lang] {
+        span[data-lang] {
             display: none;
         }
 
-        body.lang-en span[data-lang="en"],
-        body.lang-en h1 [data-lang="en"],
-        body.lang-pt span[data-lang="pt"],
-        body.lang-pt h1 [data-lang="pt"],
-        body.lang-es span[data-lang="es"],
-        body.lang-es h1 [data-lang="es"] {
+        body.lang-en span[data-lang="en"] {
             display: inline;
         }
 
-        /* Inline display for links */
-        body.lang-en a[data-lang="en"],
-        body.lang-pt a[data-lang="pt"],
-        body.lang-es a[data-lang="es"] {
+        body.lang-pt span[data-lang="pt"] {
+            display: inline;
+        }
+
+        body.lang-es span[data-lang="es"] {
             display: inline;
         }
 
@@ -100,530 +78,445 @@
             left: 0;
             right: 0;
             z-index: 100;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
-        .nav-logo {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .nav.dark {
+            background: rgba(29, 29, 31, 0.72);
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-logo img {
+            height: 100px;
+            display: block;
+            transition: opacity 0.3s;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.3rem;
         }
 
         .lang-btn {
             background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            padding: 0.35rem 0.7rem;
+            border: none;
+            color: #424245;
+            padding: 0.3rem 0.6rem;
             border-radius: 2rem;
             cursor: pointer;
             font-size: 0.65rem;
             font-weight: 600;
             font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-            letter-spacing: 0.05em;
+            transition: all 0.3s;
         }
 
-        .lang-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+        .nav.dark .lang-btn {
+            color: #a1a1a6;
         }
 
         .lang-btn.active {
-            background: var(--primary);
-            color: var(--bg-dark);
-            border-color: var(--primary);
+            background: #1d1d1f;
+            color: #fff;
         }
 
-        /* Hero Section */
-        .hero {
+        .nav.dark .lang-btn.active {
+            background: #fff;
+            color: #1d1d1f;
+        }
+
+        /* ===== FULL-WIDTH SECTIONS ===== */
+        .panel {
+            width: 100%;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 6rem 2rem 4rem;
-            background: var(--gradient-hero);
+            padding: 6rem 2rem;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
-            animation: nebula 20s ease-in-out infinite alternate;
+        .panel>* {
+            width: 100%;
+            max-width: 900px;
         }
 
-        @keyframes nebula {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(-5%, 5%) rotate(10deg);
-            }
+        .panel-half {
+            min-height: 80vh;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
+        /* ===== COLOR THEMES ===== */
+        .bg-white {
+            background: #fff;
+            color: #1d1d1f;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--primary-dim);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
+        .bg-light {
+            background: #f5f5f7;
+            color: #1d1d1f;
+        }
+
+        .bg-dark {
+            background: #1d1d1f;
+            color: #f5f5f7;
+        }
+
+        .bg-black {
+            background: #000;
+            color: #f5f5f7;
+        }
+
+        .bg-blue {
+            background: #e8f0fe;
+            color: #1d1d1f;
+        }
+
+        /* ===== HERO ===== */
+        .hero-logo {
+            margin-bottom: 2.5rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-logo img {
+            height: 180px;
+        }
+
+        .hero-overline {
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--primary);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            animation: fadeInDown 1s ease-out;
+            letter-spacing: 0.06em;
+            color: #E8720C;
+            margin-bottom: 1.2rem;
+            animation: fadeIn 1s ease-out 0.2s both;
         }
 
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-dot {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.5;
-                transform: scale(1.5);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
+        .hero-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem);
             font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            max-width: 900px;
+            margin-bottom: 1.2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
-        .hero h1 .gradient-text {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero-title .blue {
+            color: #E8720C;
         }
 
         .hero-sub {
-            font-size: 1.1rem;
-            color: var(--text-dim);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #86868b;
             font-weight: 400;
-            max-width: 500px;
-            margin: 0 auto 3rem;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            max-width: 520px;
+            line-height: 1.5;
+            animation: fadeInUp 1s ease-out 0.5s both;
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-dim);
+        /* ===== SECTION TYPOGRAPHY ===== */
+        .section-overline {
             font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            animation: fadeIn 1s ease-out 1s both;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--primary), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-
-            0%,
-            100% {
-                opacity: 1;
-                height: 40px;
-            }
-
-            50% {
-                opacity: 0.3;
-                height: 20px;
-            }
-        }
-
-        /* Sections */
-        .section {
-            padding: 6rem 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            padding: 0.3rem 0.8rem;
-            background: var(--primary-dim);
-            border-radius: 2rem;
-        }
-
-        .section h2 {
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .section p {
-            color: var(--text-dim);
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .section p.highlight {
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 1.1rem;
-            border-left: 2px solid var(--primary);
-            padding-left: 1rem;
-            margin: 2rem 0;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 2.5rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            border-color: rgba(0, 212, 255, 0.2);
-            background: rgba(0, 212, 255, 0.03);
-            transform: translateY(-4px);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.3rem;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            font-weight: 500;
-            letter-spacing: 0.02em;
-        }
-
-        /* Divider */
-        .divider {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .divider-line {
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--border), transparent);
-        }
-
-        /* Integration Cards */
-        .integration-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2.5rem;
-        }
-
-        .integration-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .integration-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-accent);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .integration-card:hover {
-            border-color: rgba(0, 212, 255, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .integration-card:hover::before {
-            opacity: 1;
-        }
-
-        .integration-icon {
-            font-size: 1.8rem;
+            color: #E8720C;
             margin-bottom: 0.8rem;
         }
 
-        .integration-card h3 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-            color: var(--text-bright);
+        .bg-dark .section-overline,
+        .bg-black .section-overline {
+            color: #F5993D;
         }
 
-        .integration-card p {
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-            margin: 0;
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+            max-width: 750px;
+            margin: 0 auto 1rem;
         }
 
-        /* Partnership List */
-        .partnership-list {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .partnership-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-dim);
-            font-size: 0.95rem;
+        .section-subtitle {
+            font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+            font-weight: 400;
+            max-width: 550px;
+            margin: 0 auto;
             line-height: 1.6;
+            opacity: 0.6;
         }
 
-        .partnership-list li:last-child {
+        .section-title .blue {
+            color: #E8720C;
+        }
+
+        .bg-dark .section-title .blue,
+        .bg-black .section-title .blue {
+            color: #F5993D;
+        }
+
+        /* ===== STATS ROW ===== */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3.5rem;
+            flex-wrap: wrap;
+            max-width: 900px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .bg-white .stat-number,
+        .bg-light .stat-number {
+            color: #1d1d1f;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            font-weight: 500;
+            opacity: 0.5;
+            letter-spacing: 0.01em;
+        }
+
+        /* ===== HIGHLIGHT QUOTE ===== */
+        .quote {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            max-width: 650px;
+        }
+
+        .quote .blue {
+            color: #E8720C;
+        }
+
+        .bg-dark .quote .blue {
+            color: #F5993D;
+        }
+
+        /* ===== GRID (Integration & Partnership) ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            width: 100%;
+        }
+
+        .feature-cell {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 2.5rem;
+        }
+
+        .feature-cell:nth-child(1) {
+            background: #fff;
+        }
+
+        .feature-cell:nth-child(2) {
+            background: #f5f5f7;
+        }
+
+        .feature-cell:nth-child(3) {
+            background: #f5f5f7;
+        }
+
+        .feature-cell:nth-child(4) {
+            background: #fff;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.2rem;
+            color: #1d1d1f;
+        }
+
+        .feature-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .feature-cell h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: #1d1d1f;
+        }
+
+        .feature-cell p {
+            font-size: 0.88rem;
+            color: #86868b;
+            max-width: 280px;
+            line-height: 1.5;
+        }
+
+        /* ===== PARTNERSHIP LIST ===== */
+        .partner-list {
+            list-style: none;
+            text-align: left;
+            max-width: 500px;
+            margin: 2.5rem auto 0;
+            width: 100%;
+        }
+
+        .partner-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .bg-white .partner-list li,
+        .bg-light .partner-list li {
+            border-bottom-color: rgba(0, 0, 0, 0.06);
+        }
+
+        .partner-list li:last-child {
             border-bottom: none;
         }
 
-        .partnership-list .list-icon {
-            flex-shrink: 0;
-            width: 28px;
-            height: 28px;
+        .partner-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(232, 114, 12, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--primary-dim);
-            border-radius: 0.5rem;
-            color: var(--primary);
-            font-size: 0.8rem;
-            margin-top: 2px;
+            flex-shrink: 0;
+            color: #E8720C;
+            font-size: 0.9rem;
+            font-weight: 700;
         }
 
-        /* CTA Section */
-        .cta-section {
-            padding: 6rem 2rem;
-            text-align: center;
-            background: var(--gradient-hero);
-            position: relative;
+        .bg-dark .partner-icon,
+        .bg-black .partner-icon {
+            background: rgba(245, 153, 61, 0.15);
+            color: #F5993D;
         }
 
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta-content h2 {
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 2.5rem;
-            line-height: 1.2;
-        }
-
+        /* ===== CTA SECTION ===== */
         .cta-profile {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.6rem;
             margin-bottom: 2.5rem;
         }
 
         .cta-profile img {
-            width: 80px;
-            height: 80px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(0, 212, 255, 0.3);
         }
 
         .cta-name {
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--text-bright);
         }
 
         .cta-role {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-top: -0.3rem;
+            font-size: 0.82rem;
+            opacity: 0.5;
         }
 
-        .cta-links {
+        .cta-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 0.8rem;
-            margin-top: 1.5rem;
+            margin-top: 0.5rem;
         }
 
-        .cta-link {
+        .cta-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.7rem 1.4rem;
+            padding: 0.75rem 1.6rem;
             border-radius: 2rem;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 500;
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.3s;
             font-family: 'Inter', sans-serif;
         }
 
-        .cta-link.primary {
-            background: var(--gradient-accent);
-            color: white;
+        .cta-btn.filled {
+            background: #E8720C;
+            color: #fff;
         }
 
-        .cta-link.primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+        .cta-btn.filled:hover {
+            background: #D4650A;
         }
 
-        .cta-link.secondary {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-main);
+        .cta-btn.outline {
+            border: 1px solid #424245;
+            color: #f5f5f7;
         }
 
-        .cta-link.secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: scale(1.05);
+        .cta-btn.outline:hover {
+            border-color: #f5f5f7;
+            color: #fff;
         }
 
-        .cta-link svg {
+        .cta-btn svg {
             width: 16px;
             height: 16px;
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         .footer {
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             text-align: center;
+            background: #000;
+            color: #86868b;
             font-size: 0.7rem;
-            color: var(--text-dim);
-            border-top: 1px solid var(--border);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
         }
 
         .footer a {
-            color: var(--primary);
+            color: #F5993D;
             text-decoration: none;
         }
 
-        /* Animations */
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
             }
 
             to {
@@ -642,11 +535,10 @@
             }
         }
 
-        /* Scroll Reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(40px);
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
         }
 
         .reveal.visible {
@@ -654,31 +546,45 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
             .nav {
-                padding: 0.8rem 1rem;
+                padding: 0 1rem;
             }
 
-            .hero {
-                padding: 5rem 1.5rem 3rem;
+            .panel {
+                padding: 5rem 1.5rem;
             }
 
-            .section {
-                padding: 4rem 1.5rem;
+            .stats-row {
+                gap: 2rem;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .integration-grid {
+            .feature-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cta-links {
+            .feature-cell {
+                min-height: 40vh;
+            }
+
+            .feature-cell:nth-child(2) {
+                background: #fff;
+            }
+
+            .feature-cell:nth-child(3) {
+                background: #f5f5f7;
+            }
+
+            .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
             }
         }
     </style>
@@ -687,8 +593,10 @@
 <body class="lang-en">
 
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-logo">EMERSOL</div>
+    <nav class="nav" id="main-nav">
+        <div class="nav-logo">
+            <img src="logo2.png" alt="Emersol" id="nav-logo-img">
+        </div>
         <div class="nav-right">
             <button class="lang-btn" onclick="setLanguage('pt')">PT</button>
             <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
@@ -696,62 +604,56 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">Mobile World Congress — Barcelona</div>
-            <h1>
-                <span data-lang="en">From Solar Engineering to <span class="gradient-text">Smart Energy
-                        Infrastructure</span></span>
-                <span data-lang="pt">De Engenharia Solar para <span class="gradient-text">Infraestrutura de Energia
-                        Inteligente</span></span>
-                <span data-lang="es">De Ingeniería Solar a <span class="gradient-text">Infraestructura de Energía
-                        Inteligente</span></span>
-            </h1>
-            <p class="hero-sub">
-                <span data-lang="en">Engineering discipline. Real field experience. Ready for the next energy
-                    era.</span>
-                <span data-lang="pt">Disciplina de engenharia. Experiência real em campo. Prontos para a nova era da
-                    energia.</span>
-                <span data-lang="es">Disciplina de ingeniería. Experiencia real en campo. Listos para la nueva era de la
-                    energía.</span>
-            </p>
+    <!-- ========== HERO — WHITE ========== -->
+    <section class="panel bg-white">
+        <div class="hero-logo reveal">
+            <img src="logo2.png" alt="Emersol">
         </div>
-        <div class="scroll-indicator">
-            <span data-lang="en">Scroll</span>
-            <span data-lang="pt">Deslize</span>
-            <span data-lang="es">Desliza</span>
-            <div class="scroll-line"></div>
-        </div>
+        <p class="hero-overline reveal">Mobile World Congress — Barcelona</p>
+        <h2 class="hero-title reveal">
+            <span data-lang="en">From Solar Engineering<br>to <span class="blue">Smart
+                    Energy<br>Infrastructure</span></span>
+            <span data-lang="pt">De Engenharia Solar<br>para <span class="blue">Infraestrutura de<br>Energia
+                    Inteligente</span></span>
+            <span data-lang="es">De Ingeniería Solar<br>a <span class="blue">Infraestructura de<br>Energía
+                    Inteligente</span></span>
+        </h2>
+        <p class="hero-sub reveal">
+            <span data-lang="en">Engineering discipline. Real field experience.<br>Ready for the next energy era.</span>
+            <span data-lang="pt">Disciplina de engenharia. Experiência real em campo.<br>Prontos para a nova era da
+                energia.</span>
+            <span data-lang="es">Disciplina de ingeniería. Experiencia real en campo.<br>Listos para la nueva era de la
+                energía.</span>
+        </p>
     </section>
 
-    <!-- Our Journey -->
-    <section class="section reveal">
-        <span class="section-label">
-            <span data-lang="en">Our Journey</span>
-            <span data-lang="pt">Nossa Jornada</span>
-            <span data-lang="es">Nuestro Recorrido</span>
-        </span>
-        <h2>
-            <span data-lang="en">Built on engineering discipline and real field experience.</span>
-            <span data-lang="pt">Construída com disciplina de engenharia e experiência real em campo.</span>
-            <span data-lang="es">Construida con disciplina de ingeniería y experiencia real en campo.</span>
-        </h2>
-        <div data-lang="en">
-            <p>For more than 10 years, we have focused on on-grid solar energy systems, developing technical expertise
-                and operational excellence in the Brazilian market.</p>
+    <!-- ========== OUR JOURNEY — LIGHT ========== -->
+    <section class="panel bg-light">
+        <div class="reveal">
+            <p class="section-overline">
+                <span data-lang="en">Our Journey</span>
+                <span data-lang="pt">Nossa Jornada</span>
+                <span data-lang="es">Nuestro Recorrido</span>
+            </p>
+            <h2 class="section-title">
+                <span data-lang="en">Built on engineering<br>discipline and <span class="blue">real
+                        field<br>experience.</span></span>
+                <span data-lang="pt">Construída com disciplina<br>de engenharia e <span class="blue">experiência<br>real
+                        em campo.</span></span>
+                <span data-lang="es">Construida con disciplina<br>de ingeniería y <span class="blue">experiencia<br>real
+                        en campo.</span></span>
+            </h2>
+            <p class="section-subtitle">
+                <span data-lang="en">For more than 10 years, we have focused on on-grid solar energy systems, developing
+                    technical expertise and operational excellence in the Brazilian market.</span>
+                <span data-lang="pt">Por mais de 10 anos, nos concentramos em sistemas de energia solar on-grid,
+                    desenvolvendo expertise técnica e excelência operacional no mercado brasileiro.</span>
+                <span data-lang="es">Por más de 10 años, nos hemos enfocado en sistemas de energía solar on-grid,
+                    desarrollando experiencia técnica y excelencia operacional en el mercado brasileño.</span>
+            </p>
         </div>
-        <div data-lang="pt">
-            <p>Por mais de 10 anos, nos concentramos em sistemas de energia solar on-grid, desenvolvendo expertise
-                técnica e excelência operacional no mercado brasileiro.</p>
-        </div>
-        <div data-lang="es">
-            <p>Por más de 10 años, nos hemos enfocado en sistemas de energía solar on-grid, desarrollando experiencia
-                técnica y excelencia operacional en el mercado brasileño.</p>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
+        <div class="stats-row reveal">
+            <div class="stat-item">
                 <div class="stat-number">10+</div>
                 <div class="stat-label">
                     <span data-lang="en">Years in Solar</span>
@@ -759,7 +661,7 @@
                     <span data-lang="es">Años en Solar</span>
                 </div>
             </div>
-            <div class="stat-card">
+            <div class="stat-item">
                 <div class="stat-number">3,000+</div>
                 <div class="stat-label">
                     <span data-lang="en">Systems Deployed</span>
@@ -767,270 +669,273 @@
                     <span data-lang="es">Sistemas Instalados</span>
                 </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">R/C/I</div>
+            <div class="stat-item">
+                <div class="stat-number">R·C·I</div>
                 <div class="stat-label">
-                    <span data-lang="en">Residential, Commercial & Industrial</span>
-                    <span data-lang="pt">Residencial, Comercial & Industrial</span>
-                    <span data-lang="es">Residencial, Comercial & Industrial</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Grid</div>
-                <div class="stat-label">
-                    <span data-lang="en">Regulatory & Compliance Expertise</span>
-                    <span data-lang="pt">Expertise Regulatória & Compliance</span>
-                    <span data-lang="es">Experiencia Regulatoria & Compliance</span>
+                    <span data-lang="en">Res · Com · Industrial</span>
+                    <span data-lang="pt">Res · Com · Industrial</span>
+                    <span data-lang="es">Res · Com · Industrial</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="divider">
-        <div class="divider-line"></div>
-    </div>
-
-    <!-- Where We Stand -->
-    <section class="section reveal">
-        <span class="section-label">
-            <span data-lang="en">Where We Stand Today</span>
-            <span data-lang="pt">Onde Estamos Hoje</span>
-            <span data-lang="es">Donde Estamos Hoy</span>
-        </span>
-        <h2>
-            <span data-lang="en">A solid solar engineering company with real execution capacity.</span>
-            <span data-lang="pt">Uma sólida empresa de engenharia solar com capacidade real de execução.</span>
-            <span data-lang="es">Una sólida empresa de ingeniería solar con capacidad real de ejecución.</span>
-        </h2>
-        <div data-lang="en">
-            <p>We understand grid connection, distributed generation and large-scale deployment.</p>
-            <p class="highlight">But the energy market is evolving. Solar alone is no longer enough.</p>
-        </div>
-        <div data-lang="pt">
-            <p>Entendemos conexão à rede, geração distribuída e implantação em larga escala.</p>
-            <p class="highlight">Mas o mercado de energia está evoluindo. Apenas solar já não é suficiente.</p>
-        </div>
-        <div data-lang="es">
-            <p>Entendemos conexión a la red, generación distribuida e implementación a gran escala.</p>
-            <p class="highlight">Pero el mercado de la energía está evolucionando. Solo solar ya no es suficiente.</p>
+    <!-- ========== WHERE WE STAND — DARK ========== -->
+    <section class="panel bg-dark">
+        <div class="reveal">
+            <p class="section-overline">
+                <span data-lang="en">Where We Stand Today</span>
+                <span data-lang="pt">Onde Estamos Hoje</span>
+                <span data-lang="es">Donde Estamos Hoy</span>
+            </p>
+            <h2 class="section-title">
+                <span data-lang="en">A solid solar engineering<br>company with <span class="blue">real<br>execution
+                        capacity.</span></span>
+                <span data-lang="pt">Uma sólida empresa de<br>engenharia solar com <span class="blue">capacidade<br>real
+                        de execução.</span></span>
+                <span data-lang="es">Una sólida empresa de<br>ingeniería solar con <span class="blue">capacidad<br>real
+                        de ejecución.</span></span>
+            </h2>
+            <p class="section-subtitle">
+                <span data-lang="en">We understand grid connection, distributed generation and large-scale
+                    deployment.</span>
+                <span data-lang="pt">Entendemos conexão à rede, geração distribuída e implantação em larga
+                    escala.</span>
+                <span data-lang="es">Entendemos conexión a la red, generación distribuida e implementación a gran
+                    escala.</span>
+            </p>
         </div>
     </section>
 
-    <div class="divider">
-        <div class="divider-line"></div>
-    </div>
-
-    <!-- The Next Step -->
-    <section class="section reveal">
-        <span class="section-label">
-            <span data-lang="en">The Next Step: Integration</span>
-            <span data-lang="pt">O Próximo Passo: Integração</span>
-            <span data-lang="es">El Próximo Paso: Integración</span>
-        </span>
-        <h2>
-            <span data-lang="en">Solar + Storage + EV + <span class="gradient-text">Intelligence</span></span>
-            <span data-lang="pt">Solar + Armazenamento + VE + <span class="gradient-text">Inteligência</span></span>
-            <span data-lang="es">Solar + Almacenamiento + VE + <span class="gradient-text">Inteligencia</span></span>
-        </h2>
-        <div data-lang="en">
-            <p>Our goal is to evolve from a solar engineering company into a smart energy infrastructure integrator.</p>
-        </div>
-        <div data-lang="pt">
-            <p>Nosso objetivo é evoluir de uma empresa de engenharia solar para uma integradora de infraestrutura de
-                energia inteligente.</p>
-        </div>
-        <div data-lang="es">
-            <p>Nuestro objetivo es evolucionar de una empresa de ingeniería solar a una integradora de infraestructura
-                de energía inteligente.</p>
-        </div>
-
-        <div class="integration-grid">
-            <div class="integration-card">
-                <div class="integration-icon">🔋</div>
-                <h3>BESS</h3>
-                <p>
-                    <span data-lang="en">Battery Energy Storage Systems</span>
-                    <span data-lang="pt">Sistemas de Armazenamento de Energia com Baterias</span>
-                    <span data-lang="es">Sistemas de Almacenamiento de Energía con Baterías</span>
-                </p>
-            </div>
-            <div class="integration-card">
-                <div class="integration-icon">⚡</div>
-                <h3>
-                    <span data-lang="en">EV Charging</span>
-                    <span data-lang="pt">Carregamento VE</span>
-                    <span data-lang="es">Carga para VE</span>
-                </h3>
-                <p>
-                    <span data-lang="en">EV Charging Infrastructure</span>
-                    <span data-lang="pt">Infraestrutura de Carregamento para Veículos Elétricos</span>
-                    <span data-lang="es">Infraestructura de Carga para Vehículos Eléctricos</span>
-                </p>
-            </div>
-            <div class="integration-card">
-                <div class="integration-icon">🤖</div>
-                <h3>
-                    <span data-lang="en">AI-Driven</span>
-                    <span data-lang="pt">IA Aplicada</span>
-                    <span data-lang="es">IA Aplicada</span>
-                </h3>
-                <p>
-                    <span data-lang="en">Energy monitoring and optimization</span>
-                    <span data-lang="pt">Monitoramento e otimização energética</span>
-                    <span data-lang="es">Monitoreo y optimización energética</span>
-                </p>
-            </div>
-            <div class="integration-card">
-                <div class="integration-icon">🌐</div>
-                <h3>
-                    <span data-lang="en">Smart Ecosystems</span>
-                    <span data-lang="pt">Ecossistemas Inteligentes</span>
-                    <span data-lang="es">Ecosistemas Inteligentes</span>
-                </h3>
-                <p>
-                    <span data-lang="en">Distributed energy ecosystems</span>
-                    <span data-lang="pt">Ecossistemas de energia distribuída</span>
-                    <span data-lang="es">Ecosistemas de energía distribuida</span>
-                </p>
-            </div>
+    <!-- ========== TRANSITION QUOTE — BLACK ========== -->
+    <section class="panel bg-black panel-half">
+        <div class="reveal">
+            <p class="quote">
+                <span data-lang="en">"But the energy market is evolving.<br><span class="blue">Solar alone is no longer
+                        enough.</span>"</span>
+                <span data-lang="pt">"Mas o mercado de energia está evoluindo.<br><span class="blue">Apenas solar já não
+                        é suficiente.</span>"</span>
+                <span data-lang="es">"Pero el mercado de la energía está evolucionando.<br><span class="blue">Solo solar
+                        ya no es suficiente.</span>"</span>
+            </p>
         </div>
     </section>
 
-    <div class="divider">
-        <div class="divider-line"></div>
+    <!-- ========== INTEGRATION TITLE — WHITE ========== -->
+    <section class="panel bg-white panel-half">
+        <div class="reveal">
+            <p class="section-overline">
+                <span data-lang="en">The Next Step: Integration</span>
+                <span data-lang="pt">O Próximo Passo: Integração</span>
+                <span data-lang="es">El Próximo Paso: Integración</span>
+            </p>
+            <h3 class="section-title">
+                <span data-lang="en">Solar + Storage + EV +<br><span class="blue">Intelligence.</span></span>
+                <span data-lang="pt">Solar + Armazenamento + VE +<br><span class="blue">Inteligência.</span></span>
+                <span data-lang="es">Solar + Almacenamiento + VE +<br><span class="blue">Inteligencia.</span></span>
+            </h3>
+            <p class="section-subtitle">
+                <span data-lang="en">Our goal is to evolve from a solar engineering company into a smart energy
+                    infrastructure integrator.</span>
+                <span data-lang="pt">Nosso objetivo é evoluir de uma empresa de engenharia solar para uma integradora de
+                    infraestrutura de energia inteligente.</span>
+                <span data-lang="es">Nuestro objetivo es evolucionar de una empresa de ingeniería solar a una
+                    integradora de infraestructura de energía inteligente.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== INTEGRATION GRID — CHECKERBOARD ========== -->
+    <div class="feature-grid">
+        <div class="feature-cell reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="6" y="2" width="12" height="20" rx="2" />
+                    <line x1="12" y1="6" x2="12" y2="10" />
+                    <line x1="10" y1="8" x2="14" y2="8" />
+                    <line x1="9" y1="18" x2="15" y2="18" />
+                </svg></div>
+            <h3>BESS</h3>
+            <p>
+                <span data-lang="en">Battery Energy Storage Systems</span>
+                <span data-lang="pt">Sistemas de Armazenamento de Energia com Baterias</span>
+                <span data-lang="es">Sistemas de Almacenamiento de Energía con Baterías</span>
+            </p>
+        </div>
+        <div class="feature-cell reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg></div>
+            <h3>
+                <span data-lang="en">EV Charging</span>
+                <span data-lang="pt">Carregamento VE</span>
+                <span data-lang="es">Carga para VE</span>
+            </h3>
+            <p>
+                <span data-lang="en">EV Charging Infrastructure</span>
+                <span data-lang="pt">Infraestrutura de Carregamento para Veículos Elétricos</span>
+                <span data-lang="es">Infraestructura de Carga para Vehículos Eléctricos</span>
+            </p>
+        </div>
+        <div class="feature-cell reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="12" rx="2" />
+                    <path d="M7 20h10" />
+                    <path d="M9 16v4" />
+                    <path d="M15 16v4" />
+                    <circle cx="9" cy="10" r="1" />
+                    <circle cx="15" cy="10" r="1" />
+                    <path d="M9 13h6" />
+                </svg></div>
+            <h3>
+                <span data-lang="en">AI-Driven</span>
+                <span data-lang="pt">IA Aplicada</span>
+                <span data-lang="es">IA Aplicada</span>
+            </h3>
+            <p>
+                <span data-lang="en">Energy monitoring and optimization</span>
+                <span data-lang="pt">Monitoramento e otimização energética</span>
+                <span data-lang="es">Monitoreo y optimización energética</span>
+            </p>
+        </div>
+        <div class="feature-cell reveal">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg></div>
+            <h3>
+                <span data-lang="en">Smart Ecosystems</span>
+                <span data-lang="pt">Ecossistemas Inteligentes</span>
+                <span data-lang="es">Ecosistemas Inteligentes</span>
+            </h3>
+            <p>
+                <span data-lang="en">Distributed energy ecosystems</span>
+                <span data-lang="pt">Ecossistemas de energia distribuída</span>
+                <span data-lang="es">Ecosistemas de energía distribuida</span>
+            </p>
+        </div>
     </div>
 
-    <!-- Partnerships -->
-    <section class="section reveal">
-        <span class="section-label">
-            <span data-lang="en">Why International Partnerships</span>
-            <span data-lang="pt">Por Que Parcerias Internacionais</span>
-            <span data-lang="es">Por Qué Alianzas Internacionales</span>
-        </span>
-        <h2>
-            <span data-lang="en">We are looking for technology leaders willing to expand into Brazil.</span>
-            <span data-lang="pt">Buscamos líderes tecnológicos dispostos a expandir para o Brasil.</span>
-            <span data-lang="es">Buscamos líderes tecnológicos dispuestos a expandirse en Brasil.</span>
-        </h2>
-        <div data-lang="en">
-            <p>We offer local engineering capability, market knowledge and execution strength.</p>
+    <!-- ========== PARTNERSHIPS — DARK ========== -->
+    <section class="panel bg-dark">
+        <div class="reveal">
+            <p class="section-overline">
+                <span data-lang="en">Why International Partnerships</span>
+                <span data-lang="pt">Por Que Parcerias Internacionais</span>
+                <span data-lang="es">Por Qué Alianzas Internacionales</span>
+            </p>
+            <h2 class="section-title">
+                <span data-lang="en">We are looking for<br><span class="blue">technology leaders</span><br>willing to
+                    expand<br>into Brazil.</span>
+                <span data-lang="pt">Buscamos <span class="blue">líderes<br>tecnológicos</span> dispostos<br>a expandir
+                    para<br>o Brasil.</span>
+                <span data-lang="es">Buscamos <span class="blue">líderes<br>tecnológicos</span> dispuestos<br>a
+                    expandirse<br>en Brasil.</span>
+            </h2>
         </div>
-        <div data-lang="pt">
-            <p>Oferecemos capacidade de engenharia local, conhecimento de mercado e força de execução.</p>
-        </div>
-        <div data-lang="es">
-            <p>Ofrecemos capacidad de ingeniería local, conocimiento de mercado y fuerza de ejecución.</p>
-        </div>
-
-        <ul class="partnership-list">
+        <ul class="partner-list reveal">
             <li>
-                <div class="list-icon">→</div>
-                <div>
-                    <span data-lang="en">Technology transfer and technical training</span>
-                    <span data-lang="pt">Transferência de tecnologia e treinamento técnico</span>
-                    <span data-lang="es">Transferencia de tecnología y capacitación técnica</span>
-                </div>
+                <div class="partner-icon">01</div>
+                <span data-lang="en">Technology transfer and technical training</span>
+                <span data-lang="pt">Transferência de tecnologia e treinamento técnico</span>
+                <span data-lang="es">Transferencia de tecnología y capacitación técnica</span>
             </li>
             <li>
-                <div class="list-icon">→</div>
-                <div>
-                    <span data-lang="en">Pilot projects in Brazil</span>
-                    <span data-lang="pt">Projetos-piloto no Brasil</span>
-                    <span data-lang="es">Proyectos piloto en Brasil</span>
-                </div>
+                <div class="partner-icon">02</div>
+                <span data-lang="en">Pilot projects in Brazil</span>
+                <span data-lang="pt">Projetos-piloto no Brasil</span>
+                <span data-lang="es">Proyectos piloto en Brasil</span>
             </li>
             <li>
-                <div class="list-icon">→</div>
-                <div>
-                    <span data-lang="en">Joint market expansion strategies</span>
-                    <span data-lang="pt">Estratégias conjuntas de expansão de mercado</span>
-                    <span data-lang="es">Estrategias conjuntas de expansión de mercado</span>
-                </div>
+                <div class="partner-icon">03</div>
+                <span data-lang="en">Joint market expansion strategies</span>
+                <span data-lang="pt">Estratégias conjuntas de expansão de mercado</span>
+                <span data-lang="es">Estrategias conjuntas de expansión de mercado</span>
             </li>
             <li>
-                <div class="list-icon">→</div>
-                <div>
-                    <span data-lang="en">Long-term collaboration</span>
-                    <span data-lang="pt">Colaboração de longo prazo</span>
-                    <span data-lang="es">Colaboración a largo plazo</span>
-                </div>
+                <div class="partner-icon">04</div>
+                <span data-lang="en">Long-term collaboration</span>
+                <span data-lang="pt">Colaboração de longo prazo</span>
+                <span data-lang="es">Colaboración a largo plazo</span>
             </li>
         </ul>
+    </section>
 
-        <div data-lang="en">
-            <p class="highlight">Our mission is clear: bring advanced global technology to Brazil and build scalable
-                energy infrastructure.</p>
-        </div>
-        <div data-lang="pt">
-            <p class="highlight">Nossa missão é clara: trazer tecnologia global avançada para o Brasil e construir
-                infraestrutura de energia escalável.</p>
-        </div>
-        <div data-lang="es">
-            <p class="highlight">Nuestra misión es clara: traer tecnología global avanzada a Brasil y construir
-                infraestructura energética escalable.</p>
+    <!-- ========== MISSION QUOTE — LIGHT ========== -->
+    <section class="panel bg-light panel-half">
+        <div class="reveal">
+            <p class="quote" style="color: #1d1d1f;">
+                <span data-lang="en">"Bring advanced global technology to Brazil<br>and build <span
+                        class="blue">scalable energy infrastructure.</span>"</span>
+                <span data-lang="pt">"Trazer tecnologia global avançada para o Brasil<br>e construir <span
+                        class="blue">infraestrutura de energia escalável.</span>"</span>
+                <span data-lang="es">"Traer tecnología global avanzada a Brasil<br>y construir <span
+                        class="blue">infraestructura energética escalable.</span>"</span>
+            </p>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="cta-content reveal">
-            <h2>
-                <span data-lang="en">Let's Build the Next <span class="gradient-text">Energy Infrastructure</span>
-                    Together</span>
-                <span data-lang="pt">Vamos Construir a Próxima <span class="gradient-text">Infraestrutura de
-                        Energia</span> Juntos</span>
-                <span data-lang="es">Construyamos la Próxima <span class="gradient-text">Infraestructura
-                        Energética</span> Juntos</span>
+    <!-- ========== CTA — BLACK ========== -->
+    <section class="panel bg-black">
+        <div class="reveal">
+            <h2 class="section-title">
+                <span data-lang="en">Let's build the next<br><span class="blue">energy
+                        infrastructure</span><br>together.</span>
+                <span data-lang="pt">Vamos construir a próxima<br><span class="blue">infraestrutura de
+                        energia</span><br>juntos.</span>
+                <span data-lang="es">Construyamos la próxima<br><span class="blue">infraestructura
+                        energética</span><br>juntos.</span>
             </h2>
-
-            <div class="cta-profile">
-                <img src="profile.jpg" alt="Emerson Luiz Miranda">
-                <div>
-                    <div class="cta-name">Emerson Luiz Miranda</div>
-                    <div class="cta-role">
-                        <span data-lang="en">Energy Infrastructure Architect · Founder | Emersol</span>
-                        <span data-lang="pt">Arquiteto de Infraestrutura de Energia · Fundador | Emersol</span>
-                        <span data-lang="es">Arquitecto de Infraestructura Energética · Fundador | Emersol</span>
-                    </div>
-                </div>
+        </div>
+        <div class="cta-profile reveal">
+            <img src="profile.jpg" alt="Emerson Luiz Miranda">
+            <div class="cta-name">Emerson Luiz Miranda</div>
+            <div class="cta-role">
+                <span data-lang="en">Energy Infrastructure Architect · Founder | Emersol</span>
+                <span data-lang="pt">Arquiteto de Infraestrutura de Energia · Fundador | Emersol</span>
+                <span data-lang="es">Arquitecto de Infraestructura Energética · Fundador | Emersol</span>
             </div>
-
-            <div class="cta-links">
-                <a href="https://wa.me/5564992079961" target="_blank" class="cta-link primary">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12.031 6.172c-3.181 0-5.767 2.586-5.767 5.767 0 1.267.405 2.436 1.087 3.388l-1.061 3.869 3.979-1.044c.907.545 1.969.862 3.106.862 3.181 0 5.767-2.586 5.767-5.767 0-3.181-2.586-5.767-5.711-5.767zm3.383 8.212c-.144.405-.729.743-1.002.8-.273.057-.611.103-1.058-.046-.312-.103-.703-.231-1.203-.435-1.558-.636-2.571-2.21-2.653-2.315-.078-.105-.636-.847-.636-1.616 0-.769.403-1.144.545-1.299.144-.155.312-.195.416-.195s.208 0 .299.007c.103.003.242-.039.378.286.136.325.468 1.144.506 1.222.039.078.065.169.013.273s-.078.182-.156.273c-.078.091-.163.201-.231.273-.078.077-.163.162-.069.325.091.156.405.669.871 1.084.597.532 1.099.695 1.255.773.156.078.247.065.338-.039.091-.104.39-.455.494-.611.104-.156.208-.13.351-.078.144.052.91.429 1.066.506.156.078.26.117.299.182.039.065.039.377-.105.782zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" />
-                    </svg>
-                    WhatsApp
-                </a>
-                <a href="mailto:emerson@emersol.com.br" class="cta-link secondary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    E-mail
-                </a>
-                <a href="https://www.linkedin.com/in/emerson-luiz-de-miranda-2409212a/" target="_blank"
-                    class="cta-link secondary">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    </svg>
-                    LinkedIn
-                </a>
-                <a href="https://emersol.ai" target="_blank" class="cta-link secondary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <path
-                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                        </path>
-                    </svg>
-                    emersol.ai
-                </a>
-            </div>
+        </div>
+        <div class="cta-buttons reveal">
+            <a href="https://wa.me/5564992079961" target="_blank" class="cta-btn filled">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12.031 6.172c-3.181 0-5.767 2.586-5.767 5.767 0 1.267.405 2.436 1.087 3.388l-1.061 3.869 3.979-1.044c.907.545 1.969.862 3.106.862 3.181 0 5.767-2.586 5.767-5.767 0-3.181-2.586-5.767-5.711-5.767zm3.383 8.212c-.144.405-.729.743-1.002.8-.273.057-.611.103-1.058-.046-.312-.103-.703-.231-1.203-.435-1.558-.636-2.571-2.21-2.653-2.315-.078-.105-.636-.847-.636-1.616 0-.769.403-1.144.545-1.299.144-.155.312-.195.416-.195s.208 0 .299.007c.103.003.242-.039.378.286.136.325.468 1.144.506 1.222.039.078.065.169.013.273s-.078.182-.156.273c-.078.091-.163.201-.231.273-.078.077-.163.162-.069.325.091.156.405.669.871 1.084.597.532 1.099.695 1.255.773.156.078.247.065.338-.039.091-.104.39-.455.494-.611.104-.156.208-.13.351-.078.144.052.91.429 1.066.506.156.078.26.117.299.182.039.065.039.377-.105.782zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" />
+                </svg>
+                WhatsApp
+            </a>
+            <a href="mailto:emerson@emersol.com.br" class="cta-btn outline">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                E-mail
+            </a>
+            <a href="https://www.linkedin.com/in/emerson-luiz-de-miranda-2409212a/" target="_blank"
+                class="cta-btn outline">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+                LinkedIn
+            </a>
+            <a href="https://emersol.ai" target="_blank" class="cta-btn outline">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+                emersol.ai
+            </a>
         </div>
     </section>
 
@@ -1044,16 +949,12 @@
     </footer>
 
     <script>
-        // Language Switcher
         function setLanguage(lang) {
             document.body.className = 'lang-' + lang;
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.innerText.toLowerCase() === lang) {
-                    btn.classList.add('active');
-                }
+                if (btn.innerText.toLowerCase() === lang) btn.classList.add('active');
             });
-
             const titles = {
                 en: 'Emersol | Smart Energy Infrastructure',
                 pt: 'Emersol | Infraestrutura de Energia Inteligente',
@@ -1063,35 +964,39 @@
             localStorage.setItem('preferred-lang', lang);
         }
 
-        // Initialize language
         const savedLang = localStorage.getItem('preferred-lang');
         const browserLang = navigator.language.split('-')[0];
         const initialLang = savedLang || (['pt', 'en', 'es'].includes(browserLang) ? browserLang : 'en');
         setLanguage(initialLang);
 
-        // Scroll Reveal Animation
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Nav shadow on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+        // Dynamic Nav Theme
+        const nav = document.getElementById('main-nav');
+        const darkPanels = document.querySelectorAll('.bg-dark, .bg-black');
+
+        function updateNav() {
+            let isDark = false;
+            darkPanels.forEach(panel => {
+                const rect = panel.getBoundingClientRect();
+                if (rect.top <= 80 && rect.bottom > 80) isDark = true;
+            });
+            if (isDark) {
+                nav.classList.add('dark');
             } else {
-                nav.style.boxShadow = 'none';
+                nav.classList.remove('dark');
             }
-        });
+        }
+
+        window.addEventListener('scroll', updateNav);
+        updateNav();
     </script>
 </body>
 
