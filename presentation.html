@@ -79,7 +79,7 @@
             right: 0;
             z-index: 100;
             padding: 0 2rem;
-            height: 80px;
+            height: 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -95,7 +95,9 @@
         }
 
         .nav-logo img {
-            height: 100px;
+            height: 28px;
+            max-height: 28px;
+            width: auto;
             display: block;
             transition: opacity 0.3s;
         }
@@ -189,7 +191,9 @@
         }
 
         .hero-logo img {
-            height: 180px;
+            height: 60px;
+            max-height: 60px;
+            width: auto;
         }
 
         .hero-overline {
@@ -986,7 +990,7 @@
             let isDark = false;
             darkPanels.forEach(panel => {
                 const rect = panel.getBoundingClientRect();
-                if (rect.top <= 80 && rect.bottom > 80) isDark = true;
+                if (rect.top <= 48 && rect.bottom > 48) isDark = true;
             });
             if (isDark) {
                 nav.classList.add('dark');
