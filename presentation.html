@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emersol | Smart Energy Infrastructure</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Emersol | From Solar Engineering to Smart Energy Infrastructure">
+    <meta name="description"
+        content="10+ years in solar energy. 3,000+ systems deployed. Now evolving into smart energy infrastructure: Solar + Storage + EV + AI.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://business-card.emersol.ai/presentation.html">
+    <meta property="og:title" content="Emersol | Smart Energy Infrastructure">
+    <meta property="og:description"
+        content="From Solar Engineering to Smart Energy Infrastructure. Mobile World Congress – Barcelona.">
+    <meta property="og:image" content="https://business-card.emersol.ai/profile.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --primary-dim: rgba(0, 212, 255, 0.15);
+            --accent: #7c3aed;
+            --accent-glow: rgba(124, 58, 237, 0.3);
+            --bg-dark: #0a0a0f;
+            --bg-section: #111118;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --text-main: #f0f0f5;
+            --text-dim: #8888a0;
+            --text-bright: #ffffff;
+            --border: rgba(255, 255, 255, 0.06);
+            --gradient-hero: linear-gradient(135deg, #0a0a0f 0%, #1a1025 50%, #0a0a0f 100%);
+            --gradient-accent: linear-gradient(135deg, #00d4ff, #7c3aed);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Language System */
+        [data-lang] {
+            display: none;
+        }
+
+        body.lang-en [data-lang="en"],
+        body.lang-pt [data-lang="pt"],
+        body.lang-es [data-lang="es"] {
+            display: block;
+        }
+
+        span[data-lang],
+        h1 [data-lang],
+        h2 [data-lang],
+        h3 [data-lang],
+        p [data-lang],
+        a [data-lang] {
+            display: none;
+        }
+
+        body.lang-en span[data-lang="en"],
+        body.lang-en h1 [data-lang="en"],
+        body.lang-pt span[data-lang="pt"],
+        body.lang-pt h1 [data-lang="pt"],
+        body.lang-es span[data-lang="es"],
+        body.lang-es h1 [data-lang="es"] {
+            display: inline;
+        }
+
+        /* Inline display for links */
+        body.lang-en a[data-lang="en"],
+        body.lang-pt a[data-lang="pt"],
+        body.lang-es a[data-lang="es"] {
+            display: inline;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 0.35rem 0.7rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.65rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            letter-spacing: 0.05em;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
+            animation: nebula 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes nebula {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-5%, 5%) rotate(10deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-dim);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                height: 40px;
+            }
+
+            50% {
+                opacity: 0.3;
+                height: 20px;
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--primary-dim);
+            border-radius: 2rem;
+        }
+
+        .section h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .section p.highlight {
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-left: 2px solid var(--primary);
+            padding-left: 1rem;
+            margin: 2rem 0;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            border-color: rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.03);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* Divider */
+        .divider {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .divider-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+        }
+
+        /* Integration Cards */
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .integration-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .integration-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .integration-card:hover {
+            border-color: rgba(0, 212, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .integration-card:hover::before {
+            opacity: 1;
+        }
+
+        .integration-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .integration-card h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-bright);
+        }
+
+        .integration-card p {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Partnership List */
+        .partnership-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .partnership-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .partnership-list li:last-child {
+            border-bottom: none;
+        }
+
+        .partnership-list .list-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-dim);
+            border-radius: 0.5rem;
+            color: var(--primary);
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: var(--gradient-hero);
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 2.5rem;
+            line-height: 1.2;
+        }
+
+        .cta-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-bright);
+        }
+
+        .cta-role {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: -0.3rem;
+        }
+
+        .cta-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cta-link.primary {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .cta-link.primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-link.secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .cta-link.secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .cta-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            letter-spacing: 0.05em;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .integration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="lang-en">
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">EMERSOL</div>
+        <div class="nav-right">
+            <button class="lang-btn" onclick="setLanguage('pt')">PT</button>
+            <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Mobile World Congress — Barcelona</div>
+            <h1>
+                <span data-lang="en">From Solar Engineering to <span class="gradient-text">Smart Energy
+                        Infrastructure</span></span>
+                <span data-lang="pt">De Engenharia Solar para <span class="gradient-text">Infraestrutura de Energia
+                        Inteligente</span></span>
+                <span data-lang="es">De Ingeniería Solar a <span class="gradient-text">Infraestructura de Energía
+                        Inteligente</span></span>
+            </h1>
+            <p class="hero-sub">
+                <span data-lang="en">Engineering discipline. Real field experience. Ready for the next energy
+                    era.</span>
+                <span data-lang="pt">Disciplina de engenharia. Experiência real em campo. Prontos para a nova era da
+                    energia.</span>
+                <span data-lang="es">Disciplina de ingeniería. Experiencia real en campo. Listos para la nueva era de la
+                    energía.</span>
+            </p>
+        </div>
+        <div class="scroll-indicator">
+            <span data-lang="en">Scroll</span>
+            <span data-lang="pt">Deslize</span>
+            <span data-lang="es">Desliza</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Our Journey -->
+    <section class="section reveal">
+        <span class="section-label">
+            <span data-lang="en">Our Journey</span>
+            <span data-lang="pt">Nossa Jornada</span>
+            <span data-lang="es">Nuestro Recorrido</span>
+        </span>
+        <h2>
+            <span data-lang="en">Built on engineering discipline and real field experience.</span>
+            <span data-lang="pt">Construída com disciplina de engenharia e experiência real em campo.</span>
+            <span data-lang="es">Construida con disciplina de ingeniería y experiencia real en campo.</span>
+        </h2>
+        <div data-lang="en">
+            <p>For more than 10 years, we have focused on on-grid solar energy systems, developing technical expertise
+                and operational excellence in the Brazilian market.</p>
+        </div>
+        <div data-lang="pt">
+            <p>Por mais de 10 anos, nos concentramos em sistemas de energia solar on-grid, desenvolvendo expertise
+                técnica e excelência operacional no mercado brasileiro.</p>
+        </div>
+        <div data-lang="es">
+            <p>Por más de 10 años, nos hemos enfocado en sistemas de energía solar on-grid, desarrollando experiencia
+                técnica y excelencia operacional en el mercado brasileño.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">
+                    <span data-lang="en">Years in Solar</span>
+                    <span data-lang="pt">Anos em Solar</span>
+                    <span data-lang="es">Años en Solar</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3,000+</div>
+                <div class="stat-label">
+                    <span data-lang="en">Systems Deployed</span>
+                    <span data-lang="pt">Sistemas Instalados</span>
+                    <span data-lang="es">Sistemas Instalados</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">R/C/I</div>
+                <div class="stat-label">
+                    <span data-lang="en">Residential, Commercial & Industrial</span>
+                    <span data-lang="pt">Residencial, Comercial & Industrial</span>
+                    <span data-lang="es">Residencial, Comercial & Industrial</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Grid</div>
+                <div class="stat-label">
+                    <span data-lang="en">Regulatory & Compliance Expertise</span>
+                    <span data-lang="pt">Expertise Regulatória & Compliance</span>
+                    <span data-lang="es">Experiencia Regulatoria & Compliance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- Where We Stand -->
+    <section class="section reveal">
+        <span class="section-label">
+            <span data-lang="en">Where We Stand Today</span>
+            <span data-lang="pt">Onde Estamos Hoje</span>
+            <span data-lang="es">Donde Estamos Hoy</span>
+        </span>
+        <h2>
+            <span data-lang="en">A solid solar engineering company with real execution capacity.</span>
+            <span data-lang="pt">Uma sólida empresa de engenharia solar com capacidade real de execução.</span>
+            <span data-lang="es">Una sólida empresa de ingeniería solar con capacidad real de ejecución.</span>
+        </h2>
+        <div data-lang="en">
+            <p>We understand grid connection, distributed generation and large-scale deployment.</p>
+            <p class="highlight">But the energy market is evolving. Solar alone is no longer enough.</p>
+        </div>
+        <div data-lang="pt">
+            <p>Entendemos conexão à rede, geração distribuída e implantação em larga escala.</p>
+            <p class="highlight">Mas o mercado de energia está evoluindo. Apenas solar já não é suficiente.</p>
+        </div>
+        <div data-lang="es">
+            <p>Entendemos conexión a la red, generación distribuida e implementación a gran escala.</p>
+            <p class="highlight">Pero el mercado de la energía está evolucionando. Solo solar ya no es suficiente.</p>
+        </div>
+    </section>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- The Next Step -->
+    <section class="section reveal">
+        <span class="section-label">
+            <span data-lang="en">The Next Step: Integration</span>
+            <span data-lang="pt">O Próximo Passo: Integração</span>
+            <span data-lang="es">El Próximo Paso: Integración</span>
+        </span>
+        <h2>
+            <span data-lang="en">Solar + Storage + EV + <span class="gradient-text">Intelligence</span></span>
+            <span data-lang="pt">Solar + Armazenamento + VE + <span class="gradient-text">Inteligência</span></span>
+            <span data-lang="es">Solar + Almacenamiento + VE + <span class="gradient-text">Inteligencia</span></span>
+        </h2>
+        <div data-lang="en">
+            <p>Our goal is to evolve from a solar engineering company into a smart energy infrastructure integrator.</p>
+        </div>
+        <div data-lang="pt">
+            <p>Nosso objetivo é evoluir de uma empresa de engenharia solar para uma integradora de infraestrutura de
+                energia inteligente.</p>
+        </div>
+        <div data-lang="es">
+            <p>Nuestro objetivo es evolucionar de una empresa de ingeniería solar a una integradora de infraestructura
+                de energía inteligente.</p>
+        </div>
+
+        <div class="integration-grid">
+            <div class="integration-card">
+                <div class="integration-icon">🔋</div>
+                <h3>BESS</h3>
+                <p>
+                    <span data-lang="en">Battery Energy Storage Systems</span>
+                    <span data-lang="pt">Sistemas de Armazenamento de Energia com Baterias</span>
+                    <span data-lang="es">Sistemas de Almacenamiento de Energía con Baterías</span>
+                </p>
+            </div>
+            <div class="integration-card">
+                <div class="integration-icon">⚡</div>
+                <h3>
+                    <span data-lang="en">EV Charging</span>
+                    <span data-lang="pt">Carregamento VE</span>
+                    <span data-lang="es">Carga para VE</span>
+                </h3>
+                <p>
+                    <span data-lang="en">EV Charging Infrastructure</span>
+                    <span data-lang="pt">Infraestrutura de Carregamento para Veículos Elétricos</span>
+                    <span data-lang="es">Infraestructura de Carga para Vehículos Eléctricos</span>
+                </p>
+            </div>
+            <div class="integration-card">
+                <div class="integration-icon">🤖</div>
+                <h3>
+                    <span data-lang="en">AI-Driven</span>
+                    <span data-lang="pt">IA Aplicada</span>
+                    <span data-lang="es">IA Aplicada</span>
+                </h3>
+                <p>
+                    <span data-lang="en">Energy monitoring and optimization</span>
+                    <span data-lang="pt">Monitoramento e otimização energética</span>
+                    <span data-lang="es">Monitoreo y optimización energética</span>
+                </p>
+            </div>
+            <div class="integration-card">
+                <div class="integration-icon">🌐</div>
+                <h3>
+                    <span data-lang="en">Smart Ecosystems</span>
+                    <span data-lang="pt">Ecossistemas Inteligentes</span>
+                    <span data-lang="es">Ecosistemas Inteligentes</span>
+                </h3>
+                <p>
+                    <span data-lang="en">Distributed energy ecosystems</span>
+                    <span data-lang="pt">Ecossistemas de energia distribuída</span>
+                    <span data-lang="es">Ecosistemas de energía distribuida</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- Partnerships -->
+    <section class="section reveal">
+        <span class="section-label">
+            <span data-lang="en">Why International Partnerships</span>
+            <span data-lang="pt">Por Que Parcerias Internacionais</span>
+            <span data-lang="es">Por Qué Alianzas Internacionales</span>
+        </span>
+        <h2>
+            <span data-lang="en">We are looking for technology leaders willing to expand into Brazil.</span>
+            <span data-lang="pt">Buscamos líderes tecnológicos dispostos a expandir para o Brasil.</span>
+            <span data-lang="es">Buscamos líderes tecnológicos dispuestos a expandirse en Brasil.</span>
+        </h2>
+        <div data-lang="en">
+            <p>We offer local engineering capability, market knowledge and execution strength.</p>
+        </div>
+        <div data-lang="pt">
+            <p>Oferecemos capacidade de engenharia local, conhecimento de mercado e força de execução.</p>
+        </div>
+        <div data-lang="es">
+            <p>Ofrecemos capacidad de ingeniería local, conocimiento de mercado y fuerza de ejecución.</p>
+        </div>
+
+        <ul class="partnership-list">
+            <li>
+                <div class="list-icon">→</div>
+                <div>
+                    <span data-lang="en">Technology transfer and technical training</span>
+                    <span data-lang="pt">Transferência de tecnologia e treinamento técnico</span>
+                    <span data-lang="es">Transferencia de tecnología y capacitación técnica</span>
+                </div>
+            </li>
+            <li>
+                <div class="list-icon">→</div>
+                <div>
+                    <span data-lang="en">Pilot projects in Brazil</span>
+                    <span data-lang="pt">Projetos-piloto no Brasil</span>
+                    <span data-lang="es">Proyectos piloto en Brasil</span>
+                </div>
+            </li>
+            <li>
+                <div class="list-icon">→</div>
+                <div>
+                    <span data-lang="en">Joint market expansion strategies</span>
+                    <span data-lang="pt">Estratégias conjuntas de expansão de mercado</span>
+                    <span data-lang="es">Estrategias conjuntas de expansión de mercado</span>
+                </div>
+            </li>
+            <li>
+                <div class="list-icon">→</div>
+                <div>
+                    <span data-lang="en">Long-term collaboration</span>
+                    <span data-lang="pt">Colaboração de longo prazo</span>
+                    <span data-lang="es">Colaboración a largo plazo</span>
+                </div>
+            </li>
+        </ul>
+
+        <div data-lang="en">
+            <p class="highlight">Our mission is clear: bring advanced global technology to Brazil and build scalable
+                energy infrastructure.</p>
+        </div>
+        <div data-lang="pt">
+            <p class="highlight">Nossa missão é clara: trazer tecnologia global avançada para o Brasil e construir
+                infraestrutura de energia escalável.</p>
+        </div>
+        <div data-lang="es">
+            <p class="highlight">Nuestra misión es clara: traer tecnología global avanzada a Brasil y construir
+                infraestructura energética escalable.</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content reveal">
+            <h2>
+                <span data-lang="en">Let's Build the Next <span class="gradient-text">Energy Infrastructure</span>
+                    Together</span>
+                <span data-lang="pt">Vamos Construir a Próxima <span class="gradient-text">Infraestrutura de
+                        Energia</span> Juntos</span>
+                <span data-lang="es">Construyamos la Próxima <span class="gradient-text">Infraestructura
+                        Energética</span> Juntos</span>
+            </h2>
+
+            <div class="cta-profile">
+                <img src="profile.jpg" alt="Emerson Luiz Miranda">
+                <div>
+                    <div class="cta-name">Emerson Luiz Miranda</div>
+                    <div class="cta-role">
+                        <span data-lang="en">Energy Infrastructure Architect · Founder | Emersol</span>
+                        <span data-lang="pt">Arquiteto de Infraestrutura de Energia · Fundador | Emersol</span>
+                        <span data-lang="es">Arquitecto de Infraestructura Energética · Fundador | Emersol</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-links">
+                <a href="https://wa.me/5564992079961" target="_blank" class="cta-link primary">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12.031 6.172c-3.181 0-5.767 2.586-5.767 5.767 0 1.267.405 2.436 1.087 3.388l-1.061 3.869 3.979-1.044c.907.545 1.969.862 3.106.862 3.181 0 5.767-2.586 5.767-5.767 0-3.181-2.586-5.767-5.711-5.767zm3.383 8.212c-.144.405-.729.743-1.002.8-.273.057-.611.103-1.058-.046-.312-.103-.703-.231-1.203-.435-1.558-.636-2.571-2.21-2.653-2.315-.078-.105-.636-.847-.636-1.616 0-.769.403-1.144.545-1.299.144-.155.312-.195.416-.195s.208 0 .299.007c.103.003.242-.039.378.286.136.325.468 1.144.506 1.222.039.078.065.169.013.273s-.078.182-.156.273c-.078.091-.163.201-.231.273-.078.077-.163.162-.069.325.091.156.405.669.871 1.084.597.532 1.099.695 1.255.773.156.078.247.065.338-.039.091-.104.39-.455.494-.611.104-.156.208-.13.351-.078.144.052.91.429 1.066.506.156.078.26.117.299.182.039.065.039.377-.105.782zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" />
+                    </svg>
+                    WhatsApp
+                </a>
+                <a href="mailto:emerson@emersol.com.br" class="cta-link secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    E-mail
+                </a>
+                <a href="https://www.linkedin.com/in/emerson-luiz-de-miranda-2409212a/" target="_blank"
+                    class="cta-link secondary">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://emersol.ai" target="_blank" class="cta-link secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    emersol.ai
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2026 Emersol Engenharia · <a href="index.html">
+            <span data-lang="en">Digital Business Card</span>
+            <span data-lang="pt">Cartão de Visita Digital</span>
+            <span data-lang="es">Tarjeta de Visita Digital</span>
+        </a>
+    </footer>
+
+    <script>
+        // Language Switcher
+        function setLanguage(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase() === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const titles = {
+                en: 'Emersol | Smart Energy Infrastructure',
+                pt: 'Emersol | Infraestrutura de Energia Inteligente',
+                es: 'Emersol | Infraestructura de Energía Inteligente'
+            };
+            document.title = titles[lang];
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        // Initialize language
+        const savedLang = localStorage.getItem('preferred-lang');
+        const browserLang = navigator.language.split('-')[0];
+        const initialLang = savedLang || (['pt', 'en', 'es'].includes(browserLang) ? browserLang : 'en');
+        setLanguage(initialLang);
+
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Nav shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
